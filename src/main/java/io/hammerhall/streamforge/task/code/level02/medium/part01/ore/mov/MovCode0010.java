@@ -4,6 +4,7 @@ import io.hammerhall.streamforge.domain.movie.Movie;
 import io.hammerhall.streamforge.task.Base;
 import io.hammerhall.streamforge.task.Title;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import lombok.NonNull;
 
@@ -27,6 +28,12 @@ public class MovCode0010 extends Base {
      * @return список названий фильмов в порядке убывания года выхода
      */
     public List<String> task(@NonNull Collection<Movie> movies) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return movies.stream()
+                .sorted(Comparator.comparing(Movie::getYear).reversed())
+                .map(Movie::getTitle)
+                .toList();
+    }
+    void main(){
+        task(movies());
     }
 }

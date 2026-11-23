@@ -8,7 +8,7 @@ import java.util.List;
 import lombok.NonNull;
 
 @Title("Флаги вдоль набережной")
-public class WldCode0003 extends Base {
+public class  WldCode0003 extends Base {
 
     /**
      * Задание: Получить список названий всех стран, отсортированный в алфавитном порядке.
@@ -22,7 +22,11 @@ public class WldCode0003 extends Base {
      * @return список названий стран в естественном порядке строк
      */
     public List<String> task(@NonNull Collection<Country> countries) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return countries.stream()
+                .map(Country::getName)
+                .sorted()
+                .toList();
+
     }
 
     void main() {

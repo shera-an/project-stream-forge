@@ -3,8 +3,10 @@ package io.hammerhall.streamforge.task.code.level01.easy.part02.steel.wld;
 import io.hammerhall.streamforge.domain.world.Country;
 import io.hammerhall.streamforge.task.Base;
 import io.hammerhall.streamforge.task.Title;
+
 import java.util.Collection;
 import java.util.List;
+
 import lombok.NonNull;
 
 @Title("Карта первооткрывателя")
@@ -20,7 +22,9 @@ public class WldCode0004 extends Base {
      * @return список стран без городов
      */
     public List<Country> task(@NonNull Collection<Country> countries) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return countries.stream()
+                .filter(country -> country.getCities().isEmpty())
+                .toList();
     }
 
     void main() {
