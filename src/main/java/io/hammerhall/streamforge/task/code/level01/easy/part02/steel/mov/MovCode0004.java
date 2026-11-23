@@ -3,6 +3,8 @@ package io.hammerhall.streamforge.task.code.level01.easy.part02.steel.mov;
 import io.hammerhall.streamforge.domain.movie.Movie;
 import io.hammerhall.streamforge.task.Base;
 import io.hammerhall.streamforge.task.Title;
+
+import java.time.Year;
 import java.util.Collection;
 import lombok.NonNull;
 
@@ -20,7 +22,9 @@ public class MovCode0004 extends Base {
      * @return количество фильмов, вышедших в невисокосные годы
      */
     public long task(@NonNull Collection<Movie> movies) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return movies.stream()
+                .filter(movie -> !Year.isLeap(movie.getYear()))
+                .count();
     }
 
     void main() {

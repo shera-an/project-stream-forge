@@ -24,7 +24,9 @@ public class MovCode0006 extends Base {
      * @return список фильмов с отсутствующим или некорректным рейтингом
      */
     public List<Movie> task(@NonNull Collection<Movie> movies) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return movies.stream()
+                .filter(movie -> movie.getRank() == null || movie.getRank() < 1.0 || movie.getRank() > 10.0)
+                .toList();
     }
 
     void main() {

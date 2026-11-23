@@ -24,7 +24,10 @@ public class MovCode0003 extends Base {
      * если limit больше размера коллекции
      */
     public List<Movie> task(@NonNull Collection<Movie> movies, int limit) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        int clamp = Math.clamp(limit, 0, movies.size());
+        return movies.stream()
+                .limit(clamp)
+                .toList();
     }
 
     void main() {

@@ -3,8 +3,10 @@ package io.hammerhall.streamforge.task.code.level01.easy.part02.steel.mov;
 import io.hammerhall.streamforge.domain.movie.Movie;
 import io.hammerhall.streamforge.task.Base;
 import io.hammerhall.streamforge.task.Title;
+
 import java.util.Collection;
 import java.util.List;
+
 import lombok.NonNull;
 
 @Title("Спор в монтажной")
@@ -22,7 +24,9 @@ public class MovCode0008 extends Base {
      * @return список фильмов, у которых строго больше одного режиссёра
      */
     public List<Movie> task(@NonNull Collection<Movie> movies) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return movies.stream()
+                .filter(movie -> movie.getDirectors().size() > 1)
+                .toList();
     }
 
     void main() {

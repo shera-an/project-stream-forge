@@ -5,6 +5,8 @@ import io.hammerhall.streamforge.task.Base;
 import io.hammerhall.streamforge.task.Title;
 import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import lombok.NonNull;
 
 @Title("Атлас для первоклассника")
@@ -20,7 +22,9 @@ public class WldCode0002 extends Base {
      * @return множество уникальных названий континентов
      */
     public Set<String> task(@NonNull Collection<Country> countries) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return countries.stream()
+                .map(Country::getContinent)
+                .collect(Collectors.toSet());
     }
 
     void main() {

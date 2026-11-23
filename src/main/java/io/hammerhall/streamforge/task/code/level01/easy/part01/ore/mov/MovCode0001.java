@@ -5,6 +5,8 @@ import io.hammerhall.streamforge.task.Base;
 import io.hammerhall.streamforge.task.Title;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import lombok.NonNull;
 
 @Title("Программка для зрителей")
@@ -21,7 +23,9 @@ public class MovCode0001 extends Base {
      * @return список названий всех фильмов
      */
     public List<String> task(@NonNull Collection<Movie> movies) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return movies.stream()
+                .map(Movie::getTitle)
+                .collect(Collectors.toList());
     }
 
     void main() {
