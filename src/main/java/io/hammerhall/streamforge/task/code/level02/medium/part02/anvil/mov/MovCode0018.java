@@ -1,10 +1,15 @@
 package io.hammerhall.streamforge.task.code.level02.medium.part02.anvil.mov;
 
+import io.hammerhall.streamforge.domain.movie.Director;
 import io.hammerhall.streamforge.domain.movie.Movie;
 import io.hammerhall.streamforge.task.Base;
 import io.hammerhall.streamforge.task.Title;
+
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import lombok.NonNull;
 
 /**
@@ -36,6 +41,13 @@ public class MovCode0018 extends Base {
      * @return список последних N уникальных имён режиссёров в алфавитном порядке
      */
     public List<String> task(@NonNull Collection<Movie> movies, int limit) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return limit > 0 ? movies.stream()
+                .flatMap(movie -> movie.getDirectors().stream())
+                .map(Director::getFullName)
+                .distinct()
+                .collect(Collectors.collectingAndThen(Collectors.toList(),list -> list.subList(Math.max(0,list.size() - limit), list.size()))) : new ArrayList<>();
+    }
+    void main(){
+        task(movies(), 2);
     }
 }

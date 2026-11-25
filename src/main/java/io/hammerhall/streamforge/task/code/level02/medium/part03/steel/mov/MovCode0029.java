@@ -6,6 +6,8 @@ import io.hammerhall.streamforge.task.Title;
 import java.util.Collection;
 import java.util.List;
 import java.util.TreeMap;
+import java.util.stream.Collectors;
+
 import lombok.NonNull;
 
 /**
@@ -27,6 +29,14 @@ public class MovCode0029 extends Base {
      * значение — список названий фильмов за этот год
      */
     public TreeMap<Integer, List<String>> task(@NonNull Collection<Movie> movies) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return movies.stream()
+                .collect(Collectors.groupingBy(
+                        Movie::getYear,
+                        TreeMap::new,
+                        Collectors.mapping(Movie::getTitle, Collectors.toList()))
+                );
+    }
+    void main(){
+        task(movies());
     }
 }

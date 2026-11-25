@@ -1,5 +1,6 @@
 package io.hammerhall.streamforge.task.code.level02.medium.part02.anvil.mov;
 
+import io.hammerhall.streamforge.domain.movie.Genre;
 import io.hammerhall.streamforge.domain.movie.Movie;
 import io.hammerhall.streamforge.task.Base;
 import io.hammerhall.streamforge.task.Title;
@@ -24,6 +25,16 @@ public class MovCode0017 extends Base {
      * @return список уникальных названий жанров, отсортированный по алфавиту
      */
     public List<String> task(@NonNull Collection<Movie> movies) {
-        throw new UnsupportedOperationException("Реализуйте метод");
+        return movies.stream()
+                .flatMap(movie -> movie.getGenres().stream())
+                .map(Genre::getName)
+                .distinct()
+                .sorted()
+                .toList();
+
+    }
+
+    void main(){
+        task(movies());
     }
 }
